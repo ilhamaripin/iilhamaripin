@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaskahKita - Hidupkan Visi Anda dengan Naskah Cerita Pendek</title>
+    <style>
+        /* General Styling & Smooth Scroll */
+        :root {
+            --primary-color: #3498db;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --section-padding: 60px 20px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 60px; /* Offset for fixed header if any */
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; text-align: center; }
+        h3 { font-size: 1.5rem; }
+
+        section {
+            padding: var(--section-padding);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section with Particles.js */
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-color);
+            background-image: url('');
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-content .small-text {
+            margin-top: 15px;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Down Arrow Animation */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down span {
+            display: block;
+            width: 24px;
+            height: 24px;
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        
+        /* Section Styling */
+        .problem-solution {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .problem-solution > div {
+            flex: 1;
+        }
+
+        .problem-solution ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .problem-solution li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .problem-solution .solution li::before {
+            content: '✅';
+            margin-right: 10px;
+        }
+        
+        .problem-solution .problem li::before {
+            content: '🤯';
+            margin-right: 10px;
+        }
+        
+        .problem-solution .problem li:nth-child(2)::before {
+            content: '⏳';
+        }
+        
+        .problem-solution .problem li:nth-child(3)::before {
+            content: '🎬';
+        }
+
+        .how-it-works {
+            background-color: var(--light-color);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+        }
+
+        .step .icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .genres .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .genre-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .testimonials {
+            background-color: var(--light-color);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 25px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            font-weight: bold;
+            margin-top: 15px;
+            color: var(--dark-color);
+        }
+
+        /* Styling for Historical Article Section */
+        .historical-article {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .historical-article .meta {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .historical-article h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .historical-article p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .historical-article hr {
+            border: 0;
+            height: 1px;
+            background: #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .references ul, .book-recommendations ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .references li, .book-recommendations li {
+            margin-bottom: 10px;
+        }
+
+        .book-recommendations a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .book-recommendations a:hover {
+            color: var(--dark-color);
+            text-decoration: underline;
+        }
+
+        .book-recommendations small {
+            display: block;
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .final-cta {
+            background-color: var(--dark-color);
+            color: #fff;
+            text-align: center;
+        }
+        
+        .final-cta h2, .final-cta p {
+            color: #fff;
+        }
+
+        footer {
+            background: #1c2833;
+            color: #aaa;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        /* PENAMBAHAN CSS BARU */
+        footer a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        
+        .footer-contact {
+            margin: 20px 0;
+            border-top: 1px solid #34495e;
+            border-bottom: 1px solid #34495e;
+            padding: 15px 0;
+        }
+        /* AKHIR PENAMBAHAN CSS BARU */
+
+        /* Animation on Scroll */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.5s cubic-bezier(0.645, 0.045, 0.355, 1), transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .problem-solution, .steps {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content fade-in-section is-visible">
+            <h1>Hidupkan Visi Anda. Dari Teks Menjadi Karya Spektakuler.</h1>
+            <p>Temukan pustaka naskah skenario dan cerita pendek berkualitas siap produksi. Solusi cepat bagi sutradara, kreator konten, dan mahasiswa untuk memulai proyek mereka berikutnya.</p>
+            <a href="#genres" class="btn">Jelajahi Pustaka Naskah</a>
+            <p class="small-text">Gratis untuk dijelajahi. Lisensi fleksibel tersedia.</p>
+        </div>
+        <a href="#problem-solution" class="scroll-down"><span></span></a>
+    </header>
+
+    <main>
+        <section id="problem-solution" class="fade-in-section">
+            <div class="container">
+                <h2>Buntu Mencari Ide Cerita? Kami Punya Ribuan Solusinya.</h2>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h3>Tantangan Kreatif Anda</h3>
+                        <ul>
+                            <li>Kesulitan menemukan ide cerita yang segar dan orisinal.</li>
+                            <li>Waktu berharga habis hanya untuk menulis draf pertama dari nol.</li>
+                            <li>Butuh naskah berkualitas untuk tugas kuliah atau kompetisi film.</li>
+                        </ul>
+                    </div>
+                    <div class="solution">
+                        <h3>Solusi dari NaskahKita</h3>
+                        <ul>
+                            <li>Pustaka terkurasi dengan ratusan naskah pilihan.</li>
+                            <li>Hemat waktu & energi, langsung ke tahap pra-produksi.</li>
+                            <li>Dapatkan inspirasi tanpa batas dari beragam genre cerita.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works fade-in-section">
+            <div class="container">
+                <h2>Temukan Naskah Terbaik dalam 3 Langkah Mudah</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="icon">🔎</div>
+                        <h3>1. Cari & Temukan</h3>
+                        <p>Gunakan filter berdasarkan genre, tema, atau durasi untuk menemukan naskah yang paling sesuai.</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">📄</div>
+                        <h3>2. Pilih & Unduh</h3>
+                        <p>Baca sinopsis, lihat detail, dan unduh naskah lengkap dalam format PDF dengan lisensi pilihanmu.</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">🎬</div>
+                        <h3>3. Produksi & Berkarya</h3>
+                        <p>Wujudkan naskah menjadi film pendek, konten video, atau karya visual lainnya.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="genres" class="genres fade-in-section">
+            <div class="container">
+                <h2>Jelajahi Ragam Genre yang Menggugah Imajinasi</h2>
+                <div class="genre-grid">
+                    <div class="genre-card">🎭<h3>Drama</h3><p>Cerita mendalam yang menguras emosi.</p></div>
+                    <div class="genre-card">😂<h3>Komedi</h3><p>Naskah ringan yang siap mengundang tawa.</p></div>
+                    <div class="genre-card">👻<h3>Horor & Misteri</h3><p>Plot menegangkan penuh teka-teki.</p></div>
+                    <div class="genre-card">🚀<h3>Fiksi Ilmiah</h3><p>Jelajahi dunia futuristik dan teknologi canggih.</p></div>
+                    <div class="genre-card">📰<h3>Berita & Dokumenter</h3><p>Gaya penceritaan jurnalistik untuk reportase.</p></div>
+                    <div class="genre-card">❤️<h3>Romansa</h3><p>Kisah cinta dan potongan kehidupan sehari-hari.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials fade-in-section">
+            <div class="container">
+                <h2>Apa Kata Para Kreator?</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p>"Luar biasa! Saya menemukan naskah horor pendek yang sempurna untuk proyek festival film saya di sini. Prosesnya cepat dan sangat membantu."</p>
+                        <p class="author">- Budi Santoso, Sutradara Indie</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Sebagai mahasiswa DKV, NaskahKita adalah penyelamat untuk tugas akhir saya. Banyak sekali pilihan cerita yang visual dan menarik."</p>
+                        <p class="author">- Anisa Putri, Mahasiswa Film</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Untuk channel YouTube, saya butuh cerita pendek rutin. Pustaka naskah di sini memberikan saya pasokan ide yang tidak ada habisnya."</p>
+                        <p class="author">- CreativeLabs ID, Kreator Konten</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="berita-sejarah" class="fade-in-section">
+            <div class="container">
+                <h2>Wawasan NaskahKita: Lensa Sejarah</h2>
+                <article class="historical-article">
+                    <header>
+                        <h3>Abad ke-18: Ketika Akal Budi dan Revolusi Mengguncang Dunia, Membentuk Era Modern</h3>
+                        <p class="meta"><strong>Oleh:</strong> Tim Editorial NaskahKita | <strong>Dipublikasikan:</strong> 27 September 2025 | <strong>Kategori:</strong> Sejarah Dunia</p>
+                    </header>
+                    <p><strong>Banjarmasin</strong> - Abad ke-18 bukanlah sekadar periode seratus tahun dalam kalender; ia adalah tungku panas tempat ide-ide radikal ditempa dan tatanan dunia lama dilebur. Dikenal sebagai Abad Pencerahan (Age of Enlightenment), era ini menyaksikan lahirnya pemikiran yang memprioritaskan akal budi, hak asasi manusia, dan kebebasan individu, yang pada akhirnya memicu revolusi besar yang gemanya masih terasa hingga hari ini.</p>
+
+                    <h4>Fajar Pencerahan: Kekuatan Akal Budi</h4>
+                    <p>Di salon-salon di Paris hingga kedai kopi di London, para filsuf seperti Voltaire, Jean-Jacques Rousseau, dan John Locke menantang gagasan absolutisme monarki dan dominasi gereja. Montesquieu memperkenalkan konsep pemisahan kekuasaan (legislatif, eksekutif, yudikatif) yang menjadi fondasi demokrasi modern. Ide-ide ini menyebar cepat melalui pamflet, buku, dan surat, menciptakan "republik literatur" yang melintasi batas negara dan menginspirasi generasi baru untuk mempertanyakan segalanya.</p>
+
+                    <h4>Gema Revolusi di Dua Benua</h4>
+                    <p>Gagasan Pencerahan tidak tinggal di menara gading. Di seberang Atlantik, koloni-koloni Amerika, yang merasa hak-hak mereka diinjak-injak oleh Kerajaan Inggris, mendeklarasikan kemerdekaan pada tahun 1776. Revolusi Amerika menjadi eksperimen besar pertama dari ide-ide Pencerahan dalam skala nasional. Kurang dari dua dekade kemudian, Prancis menyusul. Revolusi Prancis pada tahun 1789 secara brutal meruntuhkan monarki feodal dan melahirkan semboyan "Liberté, égalité, fraternité" (Kebebasan, Kesetaraan, Persaudaraan), yang mengubah lanskap politik Eropa selamanya.</p>
+                    
+                    <h4>Roda Industri Mulai Berputar</h4>
+                    <p>Sementara revolusi politik berkecamuk, revolusi lain yang lebih senyap namun tak kalah dahsyat dimulai di Inggris. Penemuan mesin uap oleh James Watt menjadi katalisator Revolusi Industri. Pabrik-pabrik mulai bermunculan, mengubah masyarakat agraris menjadi masyarakat industri, dan memindahkan pusat kehidupan dari desa ke kota yang padat. Ini adalah awal dari dunia kapitalis modern dengan segala kompleksitas sosialnya.</p>
+
+                    <h4>Warisan Abad ke-18</h4>
+                    <p>Abad ke-18 mewariskan dunia yang kontradiktif: lahirnya demokrasi bersamaan dengan ekspansi kolonialisme, kemajuan ilmu pengetahuan diiringi oleh eksploitasi kelas pekerja. Namun, tak dapat disangkal bahwa fondasi dunia modern—mulai dari konstitusi negara, konsep hak asasi manusia, hingga inovasi teknologi—diletakkan pada era yang bergejolak dan penuh pencerahan ini.</p>
+
+                    <hr>
+
+                    <div class="references">
+                        <h4>Referensi</h4>
+                        <ul>
+                            <li>D'Alembert, Jean Le Rond. "The Encyclopedia of Diderot & d'Alembert." <em>The Encyclopedia of Diderot & d'Alembert Collaborative Translation Project</em>. University of Michigan Library, 2002.</li>
+                            <li>Israel, Jonathan I. <em>Radical Enlightenment: Philosophy and the Making of Modernity 1650-1750</em>. Oxford University Press, 2001.</li>
+                            <li>"The Seven Years' War." <em>Britannica</em>, diakses 27 September 2025.</li>
+                            <li>"The Industrial Revolution." <em>History.com</em>, A&E Television Networks, diakses 27 September 2025.</li>
+                        </ul>
+                    </div>
+
+                    <div class="book-recommendations">
+                        <h4>Rekomendasi Buku Terkait (Klik untuk Info)</h4>
+                        <p>Untuk mendalami lebih lanjut, tim kami merekomendasikan buku-buku berikut yang dapat menjadi inspirasi naskah Anda berikutnya:</p>
+                        <ul>
+                            <li><a href="#" target="_blank" rel="noopener noreferrer"><strong>The Age of the Democratic Revolution: A Political History of Europe and America, 1760-1800</strong> oleh R.R. Palmer</a></li>
+                            <li><a href="#" target="_blank" rel="noopener noreferrer"><strong>Citizens: A Chronicle of the French Revolution</strong> oleh Simon Schama</a></li>
+                            <li><a href="#" target="_blank" rel="noopener noreferrer"><strong>The Radicalism of the American Revolution</strong> oleh Gordon S. Wood</a></li>
+                            <li><a href="#" target="_blank" rel="noopener noreferrer"><strong>The Industrial Revolution, 1760-1830</strong> oleh T.S. Ashton</a></li>
+                        </ul>
+                        <small><em>*Catatan: Tautan akan mengarahkan ke halaman eksternal. Anda bisa mengganti URL '#' dengan tautan ke Amazon, Goodreads, atau toko buku pilihan Anda.</em></small>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="final-cta fade-in-section">
+            <div class="container">
+                <h2>Siap Mengubah Kata Menjadi Visual?</h2>
+                <p>Ribuan jam kreativitas menanti Anda. Mulai proyek Anda berikutnya hari ini.</p>
+                <a href="#genres" class="btn">Mulai Jelajahi Naskah Sekarang!</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NaskahKita. Seluruh Hak Cipta Dilindungi.</p>
+            
+            <div class="footer-contact">
+                <p>
+                    Email: <a href="mailto:ilhampubg7@gmail.com">ilhampubg7@gmail.com</a> | 
+                    Telepon: <a href="tel:083138617512">0831-3861-7512</a>
+                </p>
+            </div>
+            <p><a href="#">Tentang Kami</a> | <a href="#">Kontak</a> | <a href="#">Syarat & Ketentuan</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+    // Particle.js Configuration
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#ffffff" },
+            "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+            "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
+            "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
+            "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+            "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+            "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
+        },
+        "retina_detect": true
+    });
+
+    // Fade-in on Scroll Animation Logic
+    const sections = document.querySelectorAll('.fade-in-section');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        rootMargin: '0px',
+        threshold: 0.15
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    </script>
+</body>
+</html>
+```
